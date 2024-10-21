@@ -1,0 +1,146 @@
+<html><head><base href="https://k4services.com/recuperar-senha">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K4 - Recuperar Senha</title>
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .recover-container {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        width: 100%;
+        max-width: 400px;
+    }
+    .logo {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #4a90e2;
+        margin-bottom: 1rem;
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 1.5rem;
+    }
+    p {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #666;
+    }
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+    }
+    input[type="email"] {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+    }
+    button {
+        width: 100%;
+        background-color: #4a90e2;
+        color: white;
+        border: none;
+        padding: 0.75rem;
+        font-size: 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #3a7bc8;
+    }
+    .back-to-login {
+        text-align: center;
+        margin-top: 1rem;
+    }
+    .back-to-login a {
+        color: #4a90e2;
+        text-decoration: none;
+    }
+    .message {
+        text-align: center;
+        margin-top: 1rem;
+        padding: 0.5rem;
+        border-radius: 4px;
+        font-size: 0.9rem;
+    }
+    .success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+    .error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+</style>
+</head>
+<body>
+    <div class="recover-container">
+        <div class="logo">K4</div>
+        <h1>Recuperar Senha</h1>
+        <p>Digite seu e-mail para receber instruções de recuperação de senha.</p>
+        <form id="recoverForm">
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" required>
+            </div>
+            <button type="submit">Enviar Instruções</button>
+        </form>
+        <div class="back-to-login">
+            <a href="https://k4services.com/login">Voltar para o Login</a>
+        </div>
+        <div id="message" class="message" style="display: none;"></div>
+    </div>
+
+    <script>
+    const recoverForm = document.getElementById('recoverForm');
+    const messageDiv = document.getElementById('message');
+
+    recoverForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+
+        // Simulação de envio de e-mail de recuperação
+        if (email) {
+            // Simula uma chamada assíncrona para o servidor
+            setTimeout(() => {
+                showMessage('Um e-mail com instruções para recuperar sua senha foi enviado. Por favor, verifique sua caixa de entrada.', 'success');
+            }, 1000);
+        } else {
+            showMessage('Por favor, insira um e-mail válido.', 'error');
+        }
+    });
+
+    function showMessage(text, type) {
+        messageDiv.textContent = text;
+        messageDiv.className = `message ${type}`;
+        messageDiv.style.display = 'block';
+
+        // Esconde a mensagem após 5 segundos
+        setTimeout(() => {
+            messageDiv.style.display = 'none';
+        }, 5000);
+    }
+    </script>
+</body></html>

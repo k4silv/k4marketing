@@ -1,0 +1,166 @@
+<html><head><base href="https://k4services.com/"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>K4 - Conectando Empresas e Profissionais de Marketing Digital</title><style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+        color: #333;
+    }
+    .header {
+        background-color: #4a90e2;
+        color: white;
+        text-align: center;
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .logo {
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+    .search-bar {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2rem;
+    }
+    .search-bar input {
+        width: 70%;
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 4px 0 0 4px;
+    }
+    .search-bar button {
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        background-color: #4a90e2;
+        color: white;
+        border: none;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+    }
+    .listings {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1rem;
+    }
+    .listing {
+        background-color: white;
+        border-radius: 4px;
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .listing h3 {
+        margin-top: 0;
+        color: #4a90e2;
+    }
+    .listing p {
+        margin-bottom: 0.5rem;
+    }
+    .listing button {
+        background-color: #4a90e2;
+        color: white;
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .listing button:hover {
+        background-color: #3a7bc8;
+    }
+    @media (max-width: 768px) {
+        .search-bar input {
+            width: 60%;
+        }
+        .listings {
+            grid-template-columns: 1fr;
+        }
+    }
+</style></head><body>
+    <header class="header">
+        <div class="logo">K4</div>
+        <p>Conectando Empresas e Profissionais de Marketing Digital</p>
+    </header>
+    <div class="container">
+        <div class="search-bar">
+            <input type="text" placeholder="Buscar serviços de marketing digital...">
+            <button>Buscar</button>
+        </div>
+        <div class="listings" id="listings">
+            <!-- Listagens serão adicionadas dinamicamente aqui -->
+        </div>
+    </div>
+    <script>
+    const mockListings = [
+        {
+            title: "Campanha de Tráfego Pago para E-commerce",
+            description: "Precisamos de um especialista em Google Ads para otimizar nossas campanhas de produtos.",
+            company: "TechShop Ltda.",
+            location: "São Paulo, SP"
+        },
+        {
+            title: "Estratégia de Marketing de Conteúdo",
+            description: "Buscamos um profissional para desenvolver nossa estratégia de blog e mídias sociais.",
+            company: "Content Masters",
+            location: "Rio de Janeiro, RJ"
+        },
+        {
+            title: "Otimização de Funil de Vendas",
+            description: "Necessitamos de um expert em CRO para melhorar nossa taxa de conversão.",
+            company: "ConvertePro",
+            location: "Belo Horizonte, MG"
+        }
+    ];
+
+    function displayListings(listings) {
+        const listingsContainer = document.getElementById('listings');
+        listingsContainer.innerHTML = '';
+        listings.forEach(listing => {
+            const listingElement = document.createElement('div');
+            listingElement.className = 'listing';
+            listingElement.innerHTML = `
+                <h3>${listing.title}</h3>
+                <p><strong>Empresa:</strong> ${listing.company}</p>
+                <p><strong>Localização:</strong> ${listing.location}</p>
+                <p>${listing.description}</p>
+                <button onclick="contactCompany('${listing.company}')">Entrar em Contato</button>
+            `;
+            listingsContainer.appendChild(listingElement);
+        });
+    }
+
+    function contactCompany(company) {
+        alert(`Você está entrando em contato com ${company}. Em um sistema real, aqui seria aberto um formulário de contato ou chat.`);
+    }
+
+    // Inicializar a página com as listagens mockadas
+    displayListings(mockListings);
+
+    // Adicionar funcionalidade de busca
+    const searchInput = document.querySelector('.search-bar input');
+    const searchButton = document.querySelector('.search-bar button');
+
+    searchButton.addEventListener('click', performSearch);
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            performSearch();
+        }
+    });
+
+    function performSearch() {
+        const searchTerm = searchInput.value.toLowerCase();
+        const filteredListings = mockListings.filter(listing => 
+            listing.title.toLowerCase().includes(searchTerm) ||
+            listing.description.toLowerCase().includes(searchTerm) ||
+            listing.company.toLowerCase().includes(searchTerm) ||
+            listing.location.toLowerCase().includes(searchTerm)
+        );
+        displayListings(filteredListings);
+    }
+    </script>
+</body></html>

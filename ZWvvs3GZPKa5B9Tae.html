@@ -1,0 +1,201 @@
+<html><head><base href="https://k4services.com/register/"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>K4 - Registro de Empresas e Profissionais Freelancers</title><style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+        color: #333;
+    }
+    .header {
+        background-color: #4a90e2;
+        color: white;
+        text-align: center;
+        padding: 1rem;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .logo {
+        font-size: 2.5rem;
+        font-weight: bold;
+    }
+    .container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    h2 {
+        color: #4a90e2;
+        border-bottom: 2px solid #4a90e2;
+        padding-bottom: 0.5rem;
+    }
+    .tabs {
+        display: flex;
+        margin-bottom: 1rem;
+    }
+    .tab {
+        flex: 1;
+        text-align: center;
+        padding: 1rem;
+        background-color: #e0e0e0;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .tab.active {
+        background-color: #4a90e2;
+        color: white;
+    }
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    textarea,
+    select {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+    }
+    button {
+        background-color: #4a90e2;
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #3a7bc8;
+    }
+    .hidden {
+        display: none;
+    }
+</style></head><body>
+    <header class="header">
+        <div class="logo">K4</div>
+        <p>Registro de Empresas e Profissionais Freelancers</p>
+    </header>
+    <div class="container">
+        <div class="tabs">
+            <div class="tab active" id="companyTab">Empresa</div>
+            <div class="tab" id="freelancerTab">Freelancer</div>
+        </div>
+        <form id="companyForm">
+            <h2>Registro de Empresa</h2>
+            <div class="form-group">
+                <label for="companyName">Nome da Empresa</label>
+                <input type="text" id="companyName" required>
+            </div>
+            <div class="form-group">
+                <label for="companyEmail">Email Corporativo</label>
+                <input type="email" id="companyEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="companyPassword">Senha</label>
+                <input type="password" id="companyPassword" required>
+            </div>
+            <div class="form-group">
+                <label for="companyDescription">Descrição da Empresa</label>
+                <textarea id="companyDescription" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="companyIndustry">Setor de Atuação</label>
+                <select id="companyIndustry" required>
+                    <option value="">Selecione um setor</option>
+                    <option value="technology">Tecnologia</option>
+                    <option value="ecommerce">E-commerce</option>
+                    <option value="finance">Finanças</option>
+                    <option value="education">Educação</option>
+                    <option value="other">Outro</option>
+                </select>
+            </div>
+            <button type="submit">Registrar Empresa</button>
+        </form>
+        <form id="freelancerForm" class="hidden">
+            <h2>Registro de Freelancer</h2>
+            <div class="form-group">
+                <label for="freelancerName">Nome Completo</label>
+                <input type="text" id="freelancerName" required>
+            </div>
+            <div class="form-group">
+                <label for="freelancerEmail">Email</label>
+                <input type="email" id="freelancerEmail" required>
+            </div>
+            <div class="form-group">
+                <label for="freelancerPassword">Senha</label>
+                <input type="password" id="freelancerPassword" required>
+            </div>
+            <div class="form-group">
+                <label for="freelancerSkills">Habilidades (separadas por vírgula)</label>
+                <input type="text" id="freelancerSkills" required>
+            </div>
+            <div class="form-group">
+                <label for="freelancerExperience">Anos de Experiência</label>
+                <input type="number" id="freelancerExperience" min="0" required>
+            </div>
+            <div class="form-group">
+                <label for="freelancerPortfolio">Link do Portfolio</label>
+                <input type="url" id="freelancerPortfolio">
+            </div>
+            <button type="submit">Registrar Freelancer</button>
+        </form>
+    </div>
+    <script>
+    const companyTab = document.getElementById('companyTab');
+    const freelancerTab = document.getElementById('freelancerTab');
+    const companyForm = document.getElementById('companyForm');
+    const freelancerForm = document.getElementById('freelancerForm');
+
+    companyTab.addEventListener('click', () => {
+        companyTab.classList.add('active');
+        freelancerTab.classList.remove('active');
+        companyForm.classList.remove('hidden');
+        freelancerForm.classList.add('hidden');
+    });
+
+    freelancerTab.addEventListener('click', () => {
+        freelancerTab.classList.add('active');
+        companyTab.classList.remove('active');
+        freelancerForm.classList.remove('hidden');
+        companyForm.classList.add('hidden');
+    });
+
+    companyForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const companyData = {
+            name: document.getElementById('companyName').value,
+            email: document.getElementById('companyEmail').value,
+            description: document.getElementById('companyDescription').value,
+            industry: document.getElementById('companyIndustry').value
+        };
+        console.log('Dados da Empresa:', companyData);
+        alert('Empresa registrada com sucesso!');
+        companyForm.reset();
+    });
+
+    freelancerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const freelancerData = {
+            name: document.getElementById('freelancerName').value,
+            email: document.getElementById('freelancerEmail').value,
+            skills: document.getElementById('freelancerSkills').value.split(',').map(skill => skill.trim()),
+            experience: document.getElementById('freelancerExperience').value,
+            portfolio: document.getElementById('freelancerPortfolio').value
+        };
+        console.log('Dados do Freelancer:', freelancerData);
+        alert('Freelancer registrado com sucesso!');
+        freelancerForm.reset();
+    });
+    </script>
+</body></html>

@@ -1,0 +1,145 @@
+<html><head><base href="https://k4services.com/login/"><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>K4 - Login</title><style>
+    body {
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f0f0f0;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .login-container {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        width: 100%;
+        max-width: 400px;
+    }
+    .logo {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #4a90e2;
+        margin-bottom: 1rem;
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 1.5rem;
+    }
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+    }
+    input[type="email"],
+    input[type="password"] {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 1rem;
+    }
+    button {
+        width: 100%;
+        background-color: #4a90e2;
+        color: white;
+        border: none;
+        padding: 0.75rem;
+        font-size: 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #3a7bc8;
+    }
+    .forgot-password {
+        text-align: right;
+        margin-top: 0.5rem;
+    }
+    .forgot-password a {
+        color: #4a90e2;
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+    .register-link {
+        text-align: center;
+        margin-top: 1rem;
+    }
+    .register-link a {
+        color: #4a90e2;
+        text-decoration: none;
+    }
+    .error-message {
+        color: #d9534f;
+        text-align: center;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+    }
+</style></head><body>
+    <div class="login-container">
+        <div class="logo">K4</div>
+        <h1>Login</h1>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">Entrar</button>
+        </form>
+        <div class="forgot-password">
+            <a href="https://k4services.com/recuperar-senha">Esqueceu a senha?</a>
+        </div>
+        <div class="register-link">
+            Não tem uma conta? <a href="https://k4services.com/register">Registre-se</a>
+        </div>
+        <div id="errorMessage" class="error-message"></div>
+    </div>
+
+    <script>
+    const loginForm = document.getElementById('loginForm');
+    const errorMessage = document.getElementById('errorMessage');
+
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        // Simulação de autenticação
+        if (email === 'teste@example.com' && password === 'senha123') {
+            // Login bem-sucedido
+            errorMessage.textContent = '';
+            alert('Login bem-sucedido!');
+            // Redirecionar para a página principal (dashboard)
+            window.location.href = 'https://k4services.com/dashboard';
+        } else {
+            // Login falhou
+            errorMessage.textContent = 'Email ou senha incorretos. Por favor, tente novamente.';
+        }
+    });
+
+    // Animação suave para o erro
+    errorMessage.style.transition = 'opacity 0.3s ease';
+    errorMessage.style.opacity = '0';
+
+    function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.style.opacity = '1';
+    }
+
+    function hideError() {
+        errorMessage.style.opacity = '0';
+    }
+    </script>
+</body></html>
